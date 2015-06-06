@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Крестики-нолики</title>
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="jquery-ui.js"></script>
+    <script type="text/javascript" src="game_script.js"></script>
+    <link type="text/css" rel="stylesheet" href="game_style.css">
+</head>
+<body>
+<div id="field"></div>
+<div id="current-player">
+    <label for="player-name">Играть за:</label>
+    <input type="text" name="player-name" id="player-name">
+    <button id="join-leave-button" class="join-button">Войти</button>
+    <button id="reset-button">Сброс</button>
+</div>
+
+<div id="players-list">
+    <label>Список игроков:</label>
+    <div id="who-plays"></div>
+</div>
+
+</body>
+
+<div id="game-over-dialog"></div>
+
+</html>
