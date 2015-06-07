@@ -23,10 +23,16 @@ $(document).ready(function()
             if(status == "ok")
             {
                 $("#join-leave-button").removeAttr("in_game");
-                $("#join-leave-button").text("Войти");
+                $("#join-leave-button").text("Присоединиться");
+                $("#player-name").prop( "disabled", false );
+                $("#who-plays").html("");
                 $("#player-name").val("");
                 createField();
                 makePlayersList()
+                setInterval(makePlayersList,1000);
+
+                setInterval(isGameOver,1000);
+
             }
         })
     }
@@ -177,6 +183,7 @@ $(document).ready(function()
                 {
                     $("#join-leave-button").attr("in_game",true).text("Выйти");
                     makePlayersList()
+					$("#player-name").prop( "disabled", true );
                 }
                 else
                 {
@@ -202,6 +209,7 @@ $(document).ready(function()
                 {
                     $("#join-leave-button").removeAttr("in_game").text("Присоединиться");
                     makePlayersList()
+					$("#player-name").prop( "disabled", false );
                 }
             })
         }
@@ -215,9 +223,17 @@ $(document).ready(function()
         }).done(function(res){
             res = res.value;
             var name=$("#player-name").val();
-            if(res && name != res)
+
+            if(res)
             {
-                $("#game-over-dialog").text("Победил "+res+".").dialog("open")
+                if(name != res)
+                {
+                    $("#game-over-dialog").text("Поражение!Победил "+res+".").dialog("open")
+                }
+                else
+                {
+                    $("#game-over-dialog").text("Победа!Победил "+res+".").dialog("open")
+                }
             }
             else
             {
